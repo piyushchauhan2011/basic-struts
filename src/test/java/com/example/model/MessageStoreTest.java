@@ -8,20 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MessageStoreTest {
 
     @Test
-    void defaultMessageWhenUserNameNull() {
+    void nullMessageBecomesEmptyString() {
         MessageStore store = new MessageStore(null);
+        assertEquals("", store.getMessage());
+    }
+
+    @Test
+    void storesMessageVerbatim() {
+        MessageStore store = new MessageStore("Hello Struts User");
         assertEquals("Hello Struts User", store.getMessage());
     }
 
     @Test
-    void defaultMessageWhenUserNameBlank() {
-        MessageStore store = new MessageStore("   ");
-        assertEquals("Hello Struts User", store.getMessage());
-    }
-
-    @Test
-    void personalizedMessageWhenUserNamePresent() {
-        MessageStore store = new MessageStore("Ada");
+    void personalizedContentIsStored() {
+        MessageStore store = new MessageStore("Hello Struts User, Ada!");
         assertTrue(store.getMessage().contains("Ada"));
     }
 }

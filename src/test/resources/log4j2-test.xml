@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{ISO8601} %-5p [%t] %c - %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.opensymphony" level="WARN"/>
+    <Logger name="org.apache.struts2" level="WARN"/>
+    <Logger name="org.apache.struts" level="WARN"/>
+    <Root level="WARN">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

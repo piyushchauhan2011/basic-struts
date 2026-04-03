@@ -4,14 +4,33 @@
         "https://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-  <constant name="struts.devMode" value="true" />
+  <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">
 
-  <package name="basicstruts2" extends="struts-default">
+    <default-action-ref name="index"/>
+
+    <global-results>
+      <result name="error">/errors/error.jsp</result>
+    </global-results>
+
+    <global-exception-mappings>
+      <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
+
     <action name="index">
       <result>/index.jsp</result>
     </action>
+
+    <!-- GET links (no CSRF token); POST form uses helloSubmit with token interceptor -->
     <action name="hello" class="com.example.action.MessageStoreAction" method="execute">
-      <result>/HelloWorld.jsp</result>
+      <interceptor-ref name="defaultStack"/>
+      <result name="success">/HelloWorld.jsp</result>
+      <result name="input">/input.jsp</result>
+    </action>
+    <action name="helloSubmit" class="com.example.action.MessageStoreAction" method="execute">
+      <interceptor-ref name="defaultStack"/>
+      <interceptor-ref name="token"/>
+      <result name="success">/HelloWorld.jsp</result>
+      <result name="input">/input.jsp</result>
     </action>
   </package>
 

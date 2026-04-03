@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="6.0"
-         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
 
-    <display-name>Form Tags</display-name>
+    <display-name>basic-struts</display-name>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <filter>
+        <filter-name>securityHeaders</filter-name>
+        <filter-class>com.example.web.SecurityHeadersFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityHeaders</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <filter>
         <filter-name>struts2</filter-name>

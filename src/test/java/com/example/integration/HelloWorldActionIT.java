@@ -30,6 +30,13 @@ public class HelloWorldActionIT extends StrutsJUnit4TestCase<MessageStoreAction>
     }
 
     @Test
+    public void helloSubmitActionMappingIsRegistered() {
+        ActionMapping mapping = getActionMapping("/helloSubmit.action");
+        assertNotNull(mapping);
+        assertEquals("helloSubmit", mapping.getName());
+    }
+
+    @Test
     public void executeHelloWithUserNamePopulatesMessageStore() throws Exception {
         request.setParameter("userName", "IntegrationUser");
 
@@ -40,5 +47,15 @@ public class HelloWorldActionIT extends StrutsJUnit4TestCase<MessageStoreAction>
         MessageStoreAction action = (MessageStoreAction) proxy.getInvocation().getAction();
         assertNotNull(action.getMessageStore());
         assertTrue(action.getMessageStore().getMessage().contains("IntegrationUser"));
+    }
+
+    @Test
+    public void invalidUserNameReturnsInput() throws Exception {
+        request.setParameter("userName", "bad@name");
+
+        ActionProxy proxy = getActionProxy("/hello.action");
+        String result = proxy.execute();
+
+        assertEquals(Action.INPUT, result);
     }
 }

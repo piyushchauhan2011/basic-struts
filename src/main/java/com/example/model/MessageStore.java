@@ -1,18 +1,13 @@
 package com.example.model;
 
+/**
+ * Holds the message shown on the hello result page.
+ */
 public class MessageStore {
-    private String message;
+    private final String message;
 
-    public MessageStore() {
-        this(null);
-    }
-
-    public MessageStore(String userName) {
-        if (userName != null && !userName.isBlank()) {
-            message = "Hello Struts User, " + userName + "!";
-        } else {
-            message = "Hello Struts User";
-        }
+    public MessageStore(String message) {
+        this.message = message != null ? message : "";
     }
 
     public String getMessage() {
