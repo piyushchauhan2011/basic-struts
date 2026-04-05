@@ -1,5 +1,5 @@
-# Maven
-/target/
+# Maven (any module — /target/ only matched the repo root)
+target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
